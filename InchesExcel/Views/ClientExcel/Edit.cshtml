@@ -1,0 +1,126 @@
+﻿
+@model ClientExcel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DUW</title>
+    <link rel="stylesheet" href="DUW.css">
+    <style>
+
+
+        input[type=text], select {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .s {
+            background-color: cornsilk;
+            border-radius: 4px;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" asp-action="Edit">
+        <h1 align="center">DUW</h1>
+
+        <div>
+            <label class="form-label">Policy Number:</label><br>
+            <input type="hidden" asp-for="Id" />
+            <input type="text" class="form" asp-for="Policynumber" placeholder="Enter policy number">
+            <span asp-validation-for="Policynumber" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label class="form-label">UW Name</label><br>
+            <input type="text" class="form" asp-for="UWName" placeholder="Enter UW Name">
+            <span asp-validation-for="UWName" class="text-danger"></span>
+
+            @*<select asp-for="UWName">
+                <option value="a">A</option>
+                <option value="b">B</option>
+                <option value="c">C</option>
+            </select>*@
+        </div>
+
+        <div>
+            <label class="form-label">Date:</label><br>
+            <input type="date" class="form" asp-for="Date">
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label class="form-label">Lot:</label><br>
+            <input type="text" class="form" asp-for="Lot" placeholder="Enter lot number">
+            <span asp-validation-for="Lot" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label class="form-label">Receiving Timing:</label><br>
+            <input type="time" class="form" asp-for="Receivedtiming">
+            <span asp-validation-for="Receivedtiming" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label class="form-label">Done cases Timing:</label><br>
+            <input type="time" class="form" asp-for="DoneCases">
+            <span asp-validation-for="DoneCases" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label class="form-label">TAT:</label><br>
+            <input type="text" class="form" asp-for="TAT" placeholder="Enter tat time(Number of hours)">
+            <span asp-validation-for="TAT" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label class="form-label">Within TAT:</label><br>
+            <input type="text" class="form" asp-for="WithinTAT" placeholder="Enter WithinTAT Or OutOfTAT">
+            <span asp-validation-for="WithinTAT" class="text-danger"></span>
+            @*<select asp-for="WithinTAT">
+                <option>True</option>
+                <option>False</option>
+            </select>*@
+
+
+        </div>
+
+        <div>
+            <input type="text" class="form" asp-for="CasesStatus" placeholder="Enter status">
+            <span asp-validation-for="CasesStatus" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-primary" asp-controller="ClientExcel" asp-action="Edit" asp-id="@Model.Id">Update</button>
+            <a asp-controller="ClientExcel" asp-action="Index" class="btn btn-secondary">
+                Back To List
+            </a>
+        </div>
+
+    </form>
+
+</body>
+</html>
+
+
+

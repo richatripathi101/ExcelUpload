@@ -1,0 +1,93 @@
+﻿@model PaginatedList<Doctors>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class=" container">
+    <a class="btn btn-sm btn-primary m-2" asp-action="ImportExcelFile" asp-controller="Doctors">Import File</a> |
+    <a class="btn btn-sm btn-warning" asp-action="ExportExcel" asp-controller="Doctors">Export Excel</a> |
+    <a class="btn btn-sm btn-primary m-2" asp-action="Template" asp-controller="Doctors">Download Template</a>
+
+    <form  asp-action="Search" method="get">
+            <div class="form-group">
+                <label for="SearchString">Search</label>
+                <input  type="text" name="SearchString" value="@ViewData["CurrentFilter"]"/>
+                    
+                <input type="submit" value="Search" class="btn btn-primary"/>
+          
+        </div>
+        </form>
+
+    <form asp-action="SearchBetweenDates" method="post">
+        Start Date: <input type="datetime" name="start" />
+        End Date: <input type="datetime" name="end" />
+        <input type="submit" value="Submit" class="btn btn-success" />
+    </form>
+
+
+    <h3 class="text-center text-success font-weight-bold">@TempData["message"]</h3>
+    <div class="row">
+        <div class="col-9 offset-1">
+            <label style="font-size:larger"> No. of Records:@ViewBag.Count</label><br /> <br />
+            <table class=" table table-bordered">
+                <thead>
+                    <tr class="text-center">
+                        <th>Date</th>
+                        <th>Policy number</th>
+                        <th>decision match with initial UW</th>
+                        <th>Decision </th>
+                        <th>Remarks</th>
+                        <th>CP details & Findings</th>
+                        <th>Inches UW NAME</th>
+                        <th>final decision</th>
+                        <th>LOT SENT TIME</th>
+                        <th>Received Time</th>
+                        <th>TAT Status</th>
+                        <th>Team - DUW / CMO / QC</th>
+                        <th>System Status</th>
+                        <th>Case Type</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                @foreach (var d in Model)
+                {
+                    <tr class="text-center">
+                        <td>@Html.DisplayFor(modelItem =>d.Date)  </td>
+                        <td>@d.PolicyNumber </td>
+                        <td>@d.DecisionMatchWithInitialUW  </td>
+                        <td>@d.Decision  </td>
+                        <td>@d.Remarks  </td>
+                        <td>@d.CPDetailAndFindings  </td>
+                        <td>@d.InchesUWname  </td>
+                        <td>@d.FinalDecision  </td>
+                        <td>@Html.DisplayFor(modelItem =>d.LOTsenttime)    </td>
+                        <td>@Html.DisplayFor(modelItem =>d.Receivedtime)    </td>
+                        <td>@d.TATstatus  </td>
+                        <td>@d.Team  </td>
+                        <td>@d.SystemStatus  </td>
+                        <td>@d.CaseType  </td>
+                        <td>
+                            <a class="btn btn-sm btn-danger" asp-controller="Doctors" asp-action="Delete" asp-route-id="@d.Id">Delete</a>
+                            <a class="btn btn-sm btn-success" asp-controller="Doctors" asp-action="Edit" asp-route-id="@d.Id">Edit</a>
+                        </td>
+                        
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
+
+@{
+    var prevDisabled = !Model.HasPreviousPage ? "disabled" : "";
+    var nextDisabled = !Model.HasNextPage ? "disabled" : "";
+}
+<asp:BoundField DataField="Date" HeaderText="Date" DataFormatString="{0:dd/MM/yyyy}" />
+
+<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex-1)" class="btn btn-default @prevDisabled">
+    Previous
+</a>
+<a asp-action="Index" asp-route-pageNumber="@(Model.PageIndex+1)" class="btn btn-default @nextDisabled">
+    Next
+</a>
+

@@ -1,0 +1,166 @@
+﻿@model Doctors
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        form {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 12px 1px;
+            outline-style: solid;
+        }
+
+        input[type=text], select {
+            width: 50%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        div {
+            border-radius: 5px;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .s {
+            background-color: cornsilk;
+            border-radius: 4px;
+            padding: 10px 15px;
+        }
+    </style>
+</head>
+<body>
+    <form method="post" asp-action="Edit">
+
+        <div>
+
+            <h1 align="center" style=" color:midnightblue"><b>Doctors Opinion</b></h1>
+            <hr>
+        </div>
+
+        <div>
+            <label class="form-label">Date:</label><br>
+            <input type="date" class="form" asp-for="Date">
+            <span asp-validation-for="Date" class="text-danger"></span>
+        </div>
+        <div class="t">
+            <label class="form-label">Policy Number:</label><br>
+            <input type="text" class="form" asp-for="PolicyNumber" placeholder="Enter policy number">
+            <span asp-validation-for="PolicyNumber" class="text-danger"></span>
+        </div>
+        <div>
+            <label asp-for="DecisionMatchWithInitialUW">
+                Decision match with initial underwriter :
+            </label><br>
+
+            <input type="radio" asp-for="DecisionMatchWithInitialUW" value="Yes">Yes<br>
+            <input type="radio" asp-for="DecisionMatchWithInitialUW" value="No">No <br>
+            <span asp-validation-for="DecisionMatchWithInitialUW" class="text-danger"></span>
+
+        </div>
+
+        <div class="t">
+            <label class="form-label">Decision:</label><br>
+            <input type="text" class="form" asp-for="Decision" placeholder="Enter decision">
+            <span asp-validation-for="Decision" class="text-danger"></span>
+        </div>
+        <div class="t">
+            <label class="form-label">Remarks:</label><br>
+            <input type="text" class="form" asp-for="Remarks" placeholder="remarks">
+            <span asp-validation-for="Remarks" class="text-danger"></span>
+        </div>
+        <div class="t">
+            <label class="form-label">Cp Details and Findings:</label><br>
+            <input type="text" class="form" asp-for="CPDetailAndFindings" placeholder="Cp details">
+            <span asp-validation-for="CPDetailAndFindings" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label class="form-label">Inches UW Name</label><br>
+            <input type="text" class="form" asp-for="InchesUWname" placeholder="Enter Name">
+
+            <span asp-validation-for="InchesUWname" class="text-danger"></span>
+           @* <select asp-for="InchesUWname">
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+            </select>*@
+        </div>
+
+        <div class="t">
+            <label class="form-label">Final decision:</label><br>
+            <input type="text" class="form" asp-for="FinalDecision" placeholder="Final decision">
+            <span asp-validation-for="FinalDecision" class="text-danger"></span>
+        </div>
+
+        <div class="t">
+            <label class="form-label">LOT sent time:</label><br>
+            <input type="time" class="form" asp-for="LOTsenttime">
+            <span asp-validation-for="LOTsenttime" class="text-danger"></span>
+        </div>
+
+        <div class="t">
+            <label class="form-label">Received Time:</label><br>
+            <input type="time" class="form" asp-for="Receivedtime">
+            <span asp-validation-for="Receivedtime" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label asp-for="TATstatus"> TAT Status :</label><br>
+            <input type="text" class="form" asp-for="TATstatus">
+            <span asp-validation-for="TATstatus" class="text-danger"></span>
+
+            @*<input type="radio" asp-for="TATstatus" value="HTML">Within TAT<br>
+            <input type="radio" asp-for="TATstatus" value="CSS">Out of TAT*@          
+        </div>
+
+        <div>
+            <label class="form-label">Team</label><br>
+            <input type="text" class="form" asp-for="Team" placeholder="Enter Team>
+            <span asp-validation-for="Team" class="text-danger"></span>
+            @*<select asp-for="Team">
+                <option value="DUW">DUW</option>
+                <option value="CMO">CMO</option>
+                <option value="QC">QC</option>
+            </select>*@
+        </div>
+
+        <div>
+            <label class="form-label">System Status:</label><br>
+            <input type="text" class="form" asp-for="SystemStatus" placeholder="System status">
+            <span asp-validation-for="SystemStatus" class="text-danger"></span>
+        </div>
+
+        <div>
+            <label class="form-label">Case Type:</label><br>
+            <input type="text" class="form" asp-for="CaseType" placeholder="System status">
+            <span asp-validation-for="CaseType" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="hidden" asp-for="Id" />
+            <button type="submit" class="btn btn-primary" asp-controller="Doctors" asp-action="Edit" asp-id="@Model.Id">Update</button>
+            <a asp-controller="Doctors" asp-action="Index" class="btn btn-secondary">
+                Back To List
+            </a>
+        </div>
+
+    </form>
+</body>
+</html>
+
+
+

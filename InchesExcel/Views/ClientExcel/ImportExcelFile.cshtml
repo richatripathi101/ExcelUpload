@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "ImportExcelFile";
+}
+
+
+
+<div class=" container">
+    <div class="row ">
+        <div class="col-6 offset-3 border border-info rounded p-4">
+            <form method="post" asp-action="ImportExcelFile" asp-controller="ClientExcel" enctype="multipart/form-data">
+               <div class="form-group">
+                   <label> Upload Excel File:</label>
+                    <input type="file" name="FormFile" class="form-control" accept=".csv,.xls,.xlsx" />
+               </div>  
+               <br />
+               <input type="submit" class="btn btn-sm btn-primary" value="Upload"/>
+
+            
+            </form>
+            
+        </div>
+</div>
+</div>
+
